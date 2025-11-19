@@ -1,0 +1,13 @@
+background:#f0f0f0; }
+header { background:#1e1e1e; color:#fff; padding:15px; display:flex; justify-content:space-between; align-items:center; }
+header h1 { margin:0; }
+nav a { color:white; text-decoration:none; margin-left:20px; }
+.hero { text-align:center; padding:80px 20px; background:#0078ff; color:white; }
+.btn { background:white; color:#0078ff; padding:12px 20px; border-radius:6px; display:inline-block; text-decoration:none; margin-top:15px; }
+h2 { text-align:center; margin-top:40px; }
+form { max-width:500px; margin:20px auto; background:white; padding:20px; border-radius:8px; }
+input,textarea,button,select { width:100%; margin:8px 0; padding:12px; border-radius:6px; border:1px solid #ccc; }
+button { background:#0078ff; color:white; border:none; cursor:pointer; }
+table { width:90%; margin:20px auto; border-collapse:collapse; background:white; border-radius:8px; overflow:hidden; }
+table th, table td { padding:12px; text-align:left; border-bottom:1px solid #ddd; }
+.language-selector { max-width:150px; margin-bottom:10px; }
