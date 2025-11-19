@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OZON Delivery</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>OZON Delivery</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="order.html">Order/Track</a>
+        <a href="login.html">Login</a>
+        <a href="register.html">Register</a>
+        <a href="admin.html">Admin</a>
+    </nav>
+</header>
+
+<div style="text-align:center;">
+<select id="languageSelector" class="language-selector">
+    <option value="en">English</option>
+    <option value="ru">Русский</option>
+    <option value="es">Español</option>
+    <option value="fr">Français</option>
+</select>
+  </div>section class="hero">
+<h2 id="heroTitle">24/7 Super Fast Delivery Across Russia</h2>
+<p id="heroText">Packages, food, documents & express delivery — always on time.</p>
+<a class="btn" href="order.html" id="heroBtn">Send Package</a>
+<p style="margin-top:10px;">WhatsApp: <a href="https://wa.me/79223087815" target="_blank">+7 922 308 7815</a></p>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
+
