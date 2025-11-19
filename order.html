@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create/Track Order</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+</head>
+<body>
+
+<header><h1>Create Delivery Request</h1></header>
+
+<form id="orderForm">
+<input type="text" id="pickup" placeholder="Pickup Address" required>
+<input type="text" id="dropoff" placeholder="Delivery Address" required>
+<textarea id="details" placeholder="Package Details"></textarea>
+<button type="submit">Submit Order</button>
+</form>
+
+<h2>Track Your Package</h2>
+<form id="trackForm">
+<input type="text" id="trackingId" placeholder="Enter Tracking ID" required>
+<button type="submit">Track</button>
+<p id="trackResult"></p>
+</form>
+
+<script>
+auth.onAuthStateChanged(user=>{
+    if(!user){alert("Please login first"); window.location.href="login.html";}
+});
+
+document.getElementById("orderForm").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const user=auth.currentUser;
+    const pickup=document.getElementById("pickup").value;
+    const dropoff=document.getElementById("dropoff").value;
+    const details=document.getElementById("details").value;
+    const trackingId="OD"+Date.now();
+    db.collection("orders").add({userId:user.uid,pickup,dropoff,details,trackingId,status:"Pending",createdAt:firebase.firestore.FieldValue.serverTimestamp()})
+    .then(()=>alert("Order created! Your Tracking ID: "+trackingId));
+});
+
+document.getElementById("trackForm").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const id=document.getElementById("trackingId").value;
+    db.collection("orders").where("trackingId","==",id).get()
+    .then(snapshot=>{
+        if(snapshot.empty){document.getElementById("trackResult").innerText="No order found";}
+        else{snapshot.forEach(doc=>{
+            const data=doc.data();
+            document.getElementById("trackResult").innerText="Status: "+data.status+" | Pickup: "+data.pickup+" | Delivery: "+data.dropoff;
+        })}
+    });
+});
+</script>
+</body>
+</html>
+
+
+---
