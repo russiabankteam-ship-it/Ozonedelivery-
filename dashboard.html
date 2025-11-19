@@ -1,0 +1,36 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="firebase-config.js"></script>
+</head>
+<body>
+
+<header><h1>Admin Dashboard</h1></header>
+
+<table id="ordersTable">
+<thead>
+<tr><th>Tracking ID</th><th>User ID</th><th>Pickup</th><th>Delivery</th><th>Details</th><th>Status</th></tr>
+</thead>
+<tbody></tbody>
+</table>
+
+<script>
+db.collection("orders").orderBy("createdAt","desc").onSnapshot(snapshot=>{
+    const tbody=document.querySelector("#ordersTable tbody");
+    tbody.innerHTML="";
+    snapshot.forEach(doc=>{
+        const d=doc.data();
+        const tr=document.createElement("tr");
+        tr.innerHTML=`<td>${d.trackingId}</td><td>${d.userId}</td><td>${d.pickup}</td><td>${d.dropoff}</td><td>${d.details}</td><td>${d.status}</td>`;
+        tbody.appendChild(tr);
+    });
+});
+</script>
+</body>
+</html>
